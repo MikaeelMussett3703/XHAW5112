@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .course-details {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .course-details h2 {
+            color: #ff0000;
+        }
+        .course-details p {
+            font-size: 18px;
+            line-height: 1.5;
+        }
+        .button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="course-details">
+            <h1 id="course-title">Course Title</h1>
+            <h2>Fees:</h2>
+            <p id="course-fees">Course fees will appear here.</p>
+            <h2>Purpose:</h2>
+            <p id="course-purpose">Course purpose will appear here.</p>
+            <h2>Content:</h2>
+            <p id="course-content">Course content will appear here.</p>
+            <a href="#" id="checkout-button" class="button">Checkout</a>
+        </div>
+    </div>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        const courseData = {
+            course1: {
+                title: 'Child Minding',
+                fees: 'R750',
+                purpose: 'To provide basic child and baby care.',
+                content: 'Birth to six-month old baby needs, Seven-month to one year old needs, Toddler needs, Educational toys'
+            },
+            course2: {
+                title: 'Cooking',
+                fees: 'R750',
+                purpose: 'To prepare and cook nutritious family meals.',
+                content: 'Nutritional requirements for a healthy body, Types of protein, carbohydrates and vegetables, Planning meals, Preparation and cooking of meals'
+            },
+            course3: {
+                title: 'Garden Maintenance',
+                fees: 'R750',
+                purpose: 'To provide basic knowledge of watering, pruning, and planting in a domestic garden.',
+                content: 'Water restrictions and the watering requirements of indigenous and exotic plants, Pruning and propagation of plants, Planting techniques for different plant types'
+            },
+            course4: {
+                title: 'First Aid',
+                fees: 'R1500',
+                purpose: 'To provide first aid awareness and basic life support.',
+                content: 'Wounds and bleeding, Burns and fractures, Emergency scene management, Cardio-Pulmonary Resuscitation (CPR), Respiratory distress e.g., Choking, blocked airway'
+            },
+            course5: {
+                title: 'Sewing',
+                fees: 'R1500',
+                purpose: 'To provide alterations and new garment tailoring services.',
+                content: 'Types of stitches, Threading a sewing machine, Sewing buttons, zips, hems and seams, Alterations, Designing and sewing new garments'
+            },
+            course6: {
+                title: 'Landscaping',
+                fees: 'R1500',
+                purpose: 'To provide landscaping services for new and established gardens.',
+                content: 'Indigenous and exotic plants and trees, Fixed structures (fountains, statues, benches, tables, built-in braai), Balancing of plants and trees in a garden, Aesthetics of plant shapes and colours, Garden layout'
+            },
+            course7: {
+                title: 'Life Skills',
+                fees: 'R1500',
+                purpose: 'To enhance personal and professional skills.',
+                content: 'Includes time management, communication skills, and personal finance management.'
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const courseId = getQueryParam('course');
+            const course = courseData[courseId];
+            
+            if (course) {
+                document.getElementById('course-title').innerText = course.title;
+                document.getElementById('course-fees').innerText = course.fees;
+                document.getElementById('course-purpose').innerText = course.purpose;
+                document.getElementById('course-content').innerText = course.content;
+
+                // Set the checkout button URL
+                const checkoutButton = document.getElementById('checkout-button');
+                checkoutButton.href = `Fee-calculation.html?courses=${courseId}`;
+            } else {
+                document.getElementById('course-title').innerText = 'Course Not Found';
+                document.getElementById('course-fees').innerText = 'N/A';
+                document.getElementById('course-purpose').innerText = 'N/A';
+                document.getElementById('course-content').innerText = 'N/A';
+                document.getElementById('checkout-button').style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

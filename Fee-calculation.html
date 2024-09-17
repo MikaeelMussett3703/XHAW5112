@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fee Calculations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .course-list {
+            margin-bottom: 20px;
+        }
+        .course-list label {
+            display: block;
+            margin: 10px 0;
+        }
+        .course-list input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="tel"],
+        .form-group input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .contact-info {
+            margin-top: 20px;
+        }
+        .contact-info p {
+            margin: 5px 0;
+        }
+        .map-container {
+            margin-top: 20px;
+        }
+        .map-container iframe {
+            width: 100%;
+            height: 200px; /* Decrease map size */
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Course Registration</h1>
+        <form id="registration-form">
+            <div class="course-list">
+                <label><input type="checkbox" name="courses" value="course1"> Child Minding - R750</label>
+                <label><input type="checkbox" name="courses" value="course2"> Cooking - R750</label>
+                <label><input type="checkbox" name="courses" value="course3"> Garden Maintenance - R750</label>
+                <label><input type="checkbox" name="courses" value="course4"> First Aid - R1500</label>
+                <label><input type="checkbox" name="courses" value="course5"> Sewing - R1500</label>
+                <label><input type="checkbox" name="courses" value="course6"> Landscaping - R1500</label>
+                <label><input type="checkbox" name="courses" value="course7"> Life Skills - R1500</label>
+            </div>
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <button type="button" class="button" onclick="calculateFees()">Calculate Total Fees</button>
+        </form>
+
+        <div id="total-fees" style="margin-top: 20px;"></div>
+
+        <div class="contact-info">
+            <h2>Contact Details</h2>
+            <p>Phone: +27766205482</p>
+            <p>Email: empoweringthepeople@gmail.com </p>
+        </div>
+
+        <div class="map-container">
+            <div>
+                <h3>Venue 1</h3>
+                <iframe src="https://www.google.co.za/maps/place/Built+Solutions/@-25.785947,28.2425913,13z/data=!4m10!1m2!2m1!1sbusinesses!3m6!1s0x1e955e29ce059953:0x132b5c5871a002de!8m2!3d-25.7860301!4d28.2837908!15sCgpidXNpbmVzc2VzWgwiCmJ1c2luZXNzZXOSARxidXNpbmVzc19kZXZlbG9wbWVudF9zZXJ2aWNlmgEjQ2haRFNVaE5NRzluUzBWSlEwRm5TVVJIT0VseWNHVkJFQUXgAQA!16s%2Fg%2F11h_z83k9p?hl=en&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D" allowfullscreen></iframe>
+                <p>Address: ext 2, Pegasus Building, 210 Amarand Ave, Waterkloof Glen, Pretoria, 0181</p>
+            </div>
+            <div>
+                <h3>Venue 2</h3>
+                <iframe src="https://www.google.co.za/maps/place/Conquers+Business+Developments/@-26.2132185,28.0848511,13z/data=!4m10!1m2!2m1!1sbusinesses!3m6!1s0x1e951100e92d86e5:0x45a62b3028afeb27!8m2!3d-26.2132185!4d28.1610688!15sCgpidXNpbmVzc2VzWgwiCmJ1c2luZXNzZXOSARxidXNpbmVzc190b19idXNpbmVzc19zZXJ2aWNlmgEkQ2hkRFNVaE5NRzluUzBWSlEwRm5TVU41TVdOSFIycG5SUkFC4AEA!16s%2Fg%2F11y07pwmh?hl=en&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D" allowfullscreen></iframe>
+                <p>Address: Ground Flr office 3, President Place 78 President Street, F H Odendaal St, Cnr, Germiston, 1400</p>
+            </div>
+            <div>
+                <h3>Venue 3</h3>
+                <iframe src="https://www.google.co.za/maps/place/Kakanyo+Business+Solutions/@-25.9597534,28.0528922,13z/data=!4m10!1m2!2m1!1sbusinesses!3m6!1s0x1e9573b603df98a7:0x7b58ddc293e76b66!8m2!3d-25.9597534!4d28.1291099!15sCgpidXNpbmVzc2VzWgwiCmJ1c2luZXNzZXOSAR5idXNpbmVzc19tYW5hZ2VtZW50X2NvbnN1bHRhbnSaASNDaFpEU1VoTk1HOW5TMFZKUTBGblNVUlhiMlJxYkdWM0VBReABAA!16s%2Fg%2F11ggz9bn3p?hl=en&entry=ttu&g_ep=EgoyMDI0MDkxMS4wIKXMDSoASAFQAw%3D%3D" allowfullscreen></iframe>
+                <p>Address: 52 14th Rd, Noordwyk, Midrand, 1687</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function calculateFees() {
+            const checkboxes = document.querySelectorAll('input[name="courses"]:checked');
+            let total = 0;
+
+            checkboxes.forEach(checkbox => {
+                const course = checkbox.value;
+                switch (course) {
+                    case 'course1':
+                    case 'course2':
+                    case 'course3':
+                        total += 750;
+                        break;
+                    case 'course4':
+                    case 'course5':
+                    case 'course6':
+                    case 'course7':
+                        total += 1500;
+                        break;
+                }
+            });
+
+            let discount = 0;
+            const numCourses = checkboxes.length;
+
+            if (numCourses === 2) {
+                discount = 0.05; // 5% discount
+            } else if (numCourses === 3) {
+                discount = 0.10; // 10% discount
+            } else if (numCourses > 3) {
+                discount = 0.15; // 15% discount
+            }
+
+            total -= total * discount;
+            const vat = 0.15; // 15% VAT
+            total += total * vat;
+
+            document.getElementById('total-fees').innerText = `Total Fees (including VAT): R${total.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
